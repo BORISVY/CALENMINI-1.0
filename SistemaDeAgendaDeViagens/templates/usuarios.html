@@ -1,0 +1,39 @@
+<h2>Gerenciamento de Usuários</h2>
+
+<a href="{{ url_for('calendario') }}">
+    <button>Voltar ao Calendário</button>
+</a>
+
+<form method="POST" action="/criar_usuario">
+    <input type="text" name="username" placeholder="Usuário" required>
+    <input type="text" name="senha" placeholder="Senha" required>
+
+    <select name="tipo">
+        <option value="comum">Comum</option>
+        <option value="admin">Admin</option>
+    </select>
+
+    <button type="submit">Criar</button>
+</form>
+
+<hr>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Usuário</th>
+        <th>Tipo</th>
+        <th>Ações</th>
+    </tr>
+
+    {% for u in usuarios %}
+    <tr>
+        <td>{{ u.id }}</td>
+        <td>{{ u.username }}</td>
+        <td>{{ u.tipo }}</td>
+        <td>
+            <a href="/excluir_usuario/{{ u.id }}">Excluir</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
