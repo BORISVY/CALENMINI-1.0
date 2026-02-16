@@ -99,6 +99,11 @@ def login():
 def calendario():
     return render_template('calendario.html')
 
+@app.route("/criar_banco")
+def criar_banco():
+    db.create_all()
+    return "Banco criado!"
+
 @app.route('/usuarios')
 @login_required
 @admin_required
@@ -203,4 +208,5 @@ print(app.url_map)
 
 if __name__ == '__main__':
     create_tables()
+
     app.run(debug=True)
